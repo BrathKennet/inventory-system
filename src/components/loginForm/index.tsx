@@ -65,7 +65,9 @@ function Submit() {
   return (
     <button
       disabled={status.pending}
-      className="bg-primary text-background rounded-md px-2 py-1"
+      className={`bg-primary hover:bg-opacity-80 duration-500 text-background rounded-md px-2 py-1 ${
+        status.pending ? "bg-opacity-80" : ""
+      }`}
     >
       {status.pending ? "Submiting ..." : "Submit"}
     </button>

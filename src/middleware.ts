@@ -4,7 +4,7 @@ import { type NextRequest, NextResponse } from "next/server";
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  const authRequired = ["/", "/product"];
+  const authRequired = ["/", "/products"];
   const noAuthRequired = ["/login"];
 
   const supabase = createMiddlewareClient({ req, res });
@@ -14,7 +14,6 @@ export async function middleware(req: NextRequest) {
     error,
   } = await supabase.auth.getSession();
 
-  
   if (!session && authRequired.includes(req.nextUrl.pathname)) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
