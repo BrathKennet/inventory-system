@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Crete_Round } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const crete = Crete_Round({ subsets: ["latin"], weight: ["400"] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${crete.className} bg-background text-primary`}>
+        <Toaster richColors closeButton />
         {children}
       </body>
     </html>

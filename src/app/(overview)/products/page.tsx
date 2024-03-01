@@ -1,7 +1,9 @@
-export default function Product() {
+import Title from "@/components/title";
+
+export default function Products() {
   return (
-    <div>
-      <p>Products</p>
-    </div>
+    <>
+      <Title text="Products" />
+    </>
   );
 }

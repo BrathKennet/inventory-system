@@ -1,7 +1,7 @@
 /* "use server"; */
 
 import { FormAuthState } from "@/models/state_forms";
-import { FormAuthSchema } from "@/utils/validation/zod_objects";
+import { FormAuthSchema } from "@/models/zod_schema";
 import { redirect } from "next/navigation";
 import { signInWithPassword, signOut } from "./server";
 
@@ -23,14 +23,14 @@ export async function login(
     };
   }
 
-  const error = await signInWithPassword(formData);
+  /* const error = await signInWithPassword(email, password);
 
   if (error) {
     console.log(error);
     return { message: error };
   }
 
-  redirect("/");
+  redirect("/"); */
 }
 
 export async function logout(prevState: FormAuthState): Promise<FormAuthState> {

@@ -2,10 +2,7 @@
 
 import { supabase } from "@/config/supabase";
 
-export async function signInWithPassword(formData: FormData) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-
+export async function signInWithPassword(email:string, password:string) {
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password,

@@ -7,3 +7,18 @@ export type FormAuthState =
       message?: string | null;
     }
   | undefined;
+
+export type FormCategoryState =
+  | {
+      errors?: {
+        nameCategory?: string[];
+      };
+      message?: string | null;
+    }
+  | undefined;
+
+  export type FormDeleteState =
+    | {
+        message?: string | null;
+      }
+    | undefined;
