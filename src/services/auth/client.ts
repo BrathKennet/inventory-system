@@ -23,14 +23,14 @@ export async function login(
     };
   }
 
-  /* const error = await signInWithPassword(email, password);
+  const error = await signInWithPassword(email, password);
 
   if (error) {
     console.log(error);
     return { message: error };
   }
 
-  redirect("/"); */
+  redirect("/");
 }
 
 export async function logout(prevState: FormAuthState): Promise<FormAuthState> {
