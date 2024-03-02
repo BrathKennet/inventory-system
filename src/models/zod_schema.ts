@@ -10,7 +10,7 @@ export const FormAuthSchema = z.object({
 });
 
 export const FormCategorySchema = z.object({
-  nameCategory: z
+  name: z
     .string()
     .trim()
     .min(1, { message: "Category name is required" }),

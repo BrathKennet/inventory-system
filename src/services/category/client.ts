@@ -14,10 +14,10 @@ export async function addCategory(
   prevState: FormCategoryState,
   formData: FormData
 ): Promise<FormCategoryState> {
-  const nameCategory = formData.get("name") as string;
+  const name = formData.get("name") as string;
 
   const validatedFields = FormCategorySchema.safeParse({
-    nameCategory,
+    name,
   });
 
   if (!validatedFields.success) {
@@ -26,7 +26,7 @@ export async function addCategory(
     };
   }
 
-  const { data, errorMessage } = await addCategoryServer(nameCategory);
+  const { data, errorMessage } = await addCategoryServer(name);
 
   if (errorMessage) {
     console.log(errorMessage);

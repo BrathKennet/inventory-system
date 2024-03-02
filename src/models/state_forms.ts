@@ -11,7 +11,7 @@ export type FormAuthState =
 export type FormCategoryState =
   | {
       errors?: {
-        nameCategory?: string[];
+        name?: string[];
       };
       message?: string | null;
     }

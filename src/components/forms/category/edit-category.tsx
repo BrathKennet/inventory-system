@@ -43,7 +43,7 @@ export default function EditCategoryForm({
             </div>
           </div>
           <p className="text-red-400">
-            {formState?.errors && formState.errors.nameCategory}
+            {formState?.errors && formState.errors.name}
             {formState?.message && formState.message}
           </p>
         </form>
