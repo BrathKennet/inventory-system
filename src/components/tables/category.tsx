@@ -38,7 +38,7 @@ export default async function CategoryTable({
               </td>
               <td className="border border-gray-500 p-1.5 ">
                 <div className="flex flex-wrap justify-center gap-x-3 w-fit mx-auto">
-                  <EditCategoryAlert id={v.id} name={v.name} />
+                  <EditCategoryAlert category={v} />
                   <DeleteAlert
                     id={v.id}
                     name={v.name}

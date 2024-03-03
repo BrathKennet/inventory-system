@@ -1,6 +1,7 @@
 export enum TypeDeleteForm {
   CATEGORY,
   PRODUCT,
+  SUPPLIER,
 }
 
 export enum TypeButton {

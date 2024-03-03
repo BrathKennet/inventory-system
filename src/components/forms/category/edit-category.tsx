@@ -6,13 +6,7 @@ import InputGeneral from "../../input/input-general";
 import SubmitButton from "../../buttons/submit";
 import { TypeButton } from "@/models/enum_models";
 
-export default function EditCategoryForm({
-  id,
-  name,
-}: {
-  id: string;
-  name: string;
-}) {
+export default function EditCategoryForm({ category }: { category: any }) {
   const [formState, formAction] = useFormState(editCategory, undefined);
 
   return (
@@ -24,14 +18,13 @@ export default function EditCategoryForm({
           </div>
           <div className="flex ">
             <div className="w-full pr-8">
-              <input id="id" name="id" className="hidden" defaultValue={id} />
+              <input id="id" name="id" className="hidden" defaultValue={category.id} />
               <InputGeneral
                 label=""
                 id="name"
                 name="name"
-                defaultValue={name}
+                defaultValue={category.name}
                 placeholder="New category name"
-                error={undefined}
               />
             </div>
             <div className="flex h-f ull w-44 place-self-end ">

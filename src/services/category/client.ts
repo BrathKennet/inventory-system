@@ -6,7 +6,6 @@ import {
   editCategoryServer,
   revalidateCategory,
 } from "./server";
-/* import { showToast } from "@/utils/toast"; */
 import { TypeToast } from "@/models/enum_models";
 import { showToast } from "@/components/toast";
 
@@ -26,7 +25,7 @@ export async function addCategory(
     };
   }
 
-  const { data, errorMessage } = await addCategoryServer(name);
+  const { errorMessage } = await addCategoryServer(name);
 
   if (errorMessage) {
     console.log(errorMessage);
@@ -42,11 +41,11 @@ export async function editCategory(
   prevState: FormCategoryState,
   formData: FormData
 ): Promise<FormCategoryState> {
-  const nameCategory = formData.get("name") as string;
-  const idCategory = formData.get("id") as string;
+  const id = formData.get("id") as string;
+  const name = formData.get("name") as string;
 
   const validatedFields = FormCategorySchema.safeParse({
-    nameCategory,
+    name,
   });
 
   if (!validatedFields.success) {
@@ -55,10 +54,7 @@ export async function editCategory(
     };
   }
 
-  const { data, errorMessage } = await editCategoryServer(
-    idCategory,
-    nameCategory
-  );
+  const { errorMessage } = await editCategoryServer(id, name);
 
   if (errorMessage) {
     console.log(errorMessage);
@@ -74,9 +70,9 @@ export async function deleteCategory(
   prevState: FormDeleteState,
   formData: FormData
 ): Promise<FormDeleteState> {
-  const idCategory = formData.get("id") as string;
+  const id = formData.get("id") as string;
 
-  const { errorMessage } = await deleteCategoryServer(idCategory);
+  const { errorMessage } = await deleteCategoryServer(id);
 
   if (errorMessage) {
     console.log(errorMessage);

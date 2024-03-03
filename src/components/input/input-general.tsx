@@ -13,10 +13,10 @@ export default function InputGeneral({
   type?: string;
   placeholder?: string;
   defaultValue?: string;
-  error: string[] | undefined;
+  error?: string[];
 }) {
   return (
-    <div>
+    <div className="w-full">
       <label htmlFor={id} className="left-0 text-primary text-sm">
         {label}
       </label>

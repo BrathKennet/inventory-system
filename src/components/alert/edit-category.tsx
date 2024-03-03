@@ -4,11 +4,9 @@ import { useState } from "react";
 import EditCategoryForm from "../forms/category/edit-category";
 
 export default function EditCategoryAlert({
-  id,
-  name,
+  category,
 }: {
-  id: string;
-  name: string;
+  category: any;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -33,7 +31,7 @@ export default function EditCategoryAlert({
                 className="w-10 h-10"
               />
             </button>
-            <EditCategoryForm id={id} name={name} />
+            <EditCategoryForm category={category} />
           </div>
         </div>
       )}

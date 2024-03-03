@@ -23,7 +23,6 @@ export default function AddCategoryForm() {
                 id="name"
                 name="name"
                 placeholder="New category name"
-                error={undefined}
               />
             </div>
             <div className="flex h-full w-44 place-self-end ">

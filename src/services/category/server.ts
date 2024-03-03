@@ -39,8 +39,6 @@ export async function deleteCategoryServer(id: string) {
 }
 
 export async function getCountCategoryServer(query: string, rows: number) {
-  /* const quantity = 3; */
-
   const { count } = await supabase
     .from("categories")
     .select("*", { count: "exact", head: true })
@@ -54,12 +52,10 @@ export async function getAllCategoryServer(
   query: string,
   rows: number
 ) {
-  /* const quantity = 3; */
-
   const initialPosition = rows * (currentPage - 1);
   const lastPosition = rows * currentPage - 1;
 
-  const { data: categories, error } = await supabase
+  const { data: categories } = await supabase
     .from("categories")
     .select("*")
     .ilike("name", `%${query}%`)

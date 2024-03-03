@@ -8,6 +8,12 @@ export type FormAuthState =
     }
   | undefined;
 
+export type FormDeleteState =
+  | {
+      message?: string | null;
+    }
+  | undefined;
+
 export type FormCategoryState =
   | {
       errors?: {
@@ -17,8 +23,14 @@ export type FormCategoryState =
     }
   | undefined;
 
-  export type FormDeleteState =
-    | {
-        message?: string | null;
-      }
-    | undefined;
+export type FormSupplierState =
+  | {
+      errors?: {
+        name?: string[];
+        address?: string[];
+        phone?: string[];
+        email?: string[];
+      };
+      message?: string | null;
+    }
+  | undefined;
