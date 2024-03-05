@@ -25,7 +25,9 @@ export default function NavLinks() {
           <div
             className={clsx(
               "my-3 py-4 block pl-5 rounded-s-lg hover:bg-secondary pr-8",
-              { "bg-secondary": pathname == link.href }
+              {
+                "bg-secondary": `/${pathname.split("/")[1]}` == link.href,
+              }
             )}
           >
             <p className="text-lg">{link.name}</p>

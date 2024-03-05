@@ -1,7 +1,10 @@
-import { getAllCategoryServer } from "@/services/category/server";
+import { getAllCategoryByRangeServer } from "@/services/category/server";
 import EditCategoryAlert from "../alert/edit-category";
 import DeleteAlert from "../alert/delete";
 import { TypeDeleteForm } from "@/models/enum_models";
+import LinkIcon from "../buttons/link-icon";
+import ShowAlert from "../alert/show";
+import ShowCategory from "../show/category";
 
 export default async function CategoryTable({
   query,
@@ -12,7 +15,11 @@ export default async function CategoryTable({
   currentPage: number;
   rows: number;
 }) {
-  const categories = await getAllCategoryServer(currentPage, query, rows);
+  const categories = await getAllCategoryByRangeServer(
+    currentPage,
+    query,
+    rows
+  );
 
   return (
     <div className="mb-2 mt-4">
@@ -23,7 +30,7 @@ export default async function CategoryTable({
         <thead className="text-primary bg-secondary text-base">
           <tr>
             <th className="border border-gray-500 w-[50%] p-1">Category</th>
-            <th className="border border-gray-500 /w-[30%] max-md:hidden">
+            <th className="border border-gray-500 max-md:hidden">
               Total Products
             </th>
             <th className="border border-gray-500 w-[20%]">Actions</th>
@@ -34,10 +41,21 @@ export default async function CategoryTable({
             <tr key={v.name}>
               <td className="border border-gray-500 p-1.5">{v.name}</td>
               <td className="border border-gray-500 p-1.5 max-md:hidden">
-                asd
+                {v.product_count}
               </td>
               <td className="border border-gray-500 p-1.5 ">
-                <div className="flex flex-wrap justify-center gap-x-3 w-fit mx-auto">
+                <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 w-fit mx-auto">
+                  <div className="md:hidden">
+                    <ShowAlert>
+                      <ShowCategory category={v} />
+                    </ShowAlert>
+                  </div>
+                  <LinkIcon
+                    href={`/products/add?idCategory=${v.id}`}
+                    src="/svg/add.svg"
+                    alt="add"
+                    title="add product"
+                  />
                   <EditCategoryAlert category={v} />
                   <DeleteAlert
                     id={v.id}

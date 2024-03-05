@@ -1,32 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import DeleteGeneralForm from "../forms/general/delete";
-import { TypeDeleteForm } from "@/models/enum_models";
 
-export default function DeleteAlert({
-  id,
-  name,
-  type,
-}: {
-  id: string;
-  name: string;
-  type: TypeDeleteForm;
-}) {
+export default function ShowAlert({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const [open, setOpen] = useState(false);
-
   return (
     <>
       <button
-        className="hover:brightness-125 duration-500 "
+        className="hover:brightness-125 duration-500 lg:hidden"
         onClick={() => setOpen(true)}
       >
-        <img
-          src="/svg/delete.svg"
-          alt="delete"
-          className="w-6 h-6"
-          title="delete"
-        />
+        <img src="/svg/show.svg" alt="show" className="w-6 h-6" title="show details" />
       </button>
       {open && (
         <div className="bg-black/15 h-screen w-screen absolute top-0 left-0 z-50 flex justify-center items-center">
@@ -41,7 +29,7 @@ export default function DeleteAlert({
                 className="w-10 h-10"
               />
             </button>
-            <DeleteGeneralForm id={id} name={name} type={type} />
+            {children}
           </div>
         </div>
       )}

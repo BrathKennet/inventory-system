@@ -34,3 +34,14 @@ export type FormSupplierState =
       message?: string | null;
     }
   | undefined;
+
+export type FormProductState =
+  | {
+      errors?: {
+        categoryId?: string[];
+        name?: string[];
+        description?: string[];
+      };
+      message?: string | null;
+    }
+  | undefined;

@@ -26,7 +26,7 @@ export default function InputGeneral({
         type={type ?? "text"}
         defaultValue={defaultValue ?? ""}
         placeholder={placeholder ?? ""}
-        className="placeholder-slate-500 h-10 w-full border-b-2 border-gray-300 text-gray-300 focus:outline-none focus:borer-rose-600 bg-transparent text-base "
+        className="placeholder-slate-500 h-10 w-full border-b-2 border-gray-300 text-gray-300 focus:outline-none focus:border-primary bg-transparent text-base "
       />
       <p className="text-red-400 text-base">{error && error[0]}</p>
     </div>

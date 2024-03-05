@@ -3,19 +3,18 @@
 import { supabase } from "@/config/supabase";
 import { revalidatePath } from "next/cache";
 
-export async function revalidateSupplier() {
-  revalidatePath("/suppliers");
+export async function revalidateProduct() {
+  revalidatePath("/products");
 }
 
-export async function addSupplierServer(
+export async function addProductServer(
+  categoryId: string,
   name: string,
-  address: string,
-  phone: string,
-  email: string
+  description: string
 ) {
   const { data, error } = await supabase
-    .from("suppliers")
-    .insert([{ name, address, phone, email }])
+    .from("products")
+    .insert([{ id_category: categoryId, name, description }])
     .select();
 
   const errorMessage = error?.message;
@@ -23,16 +22,15 @@ export async function addSupplierServer(
   return { data, errorMessage };
 }
 
-export async function editSupplierServer(
+export async function editProductServer(
   id: string,
+  categoryId: string,
   name: string,
-  address: string,
-  phone: string,
-  email: string
+  description: string
 ) {
   const { data, error } = await supabase
-    .from("suppliers")
-    .update([{ name, address, phone, email }])
+    .from("products")
+    .update([{ id_category: categoryId, name, description }])
     .eq("id", id)
     .select();
 
@@ -41,24 +39,24 @@ export async function editSupplierServer(
   return { data, errorMessage };
 }
 
-export async function deleteSupplierServer(id: string) {
-  const { error } = await supabase.from("suppliers").delete().eq("id", id);
+export async function deleteProductServer(id: string) {
+  const { error } = await supabase.from("products").delete().eq("id", id);
 
   const errorMessage = error?.message;
 
   return { errorMessage };
 }
 
-export async function getCountSupplierServer(query: string, rows: number) {
+export async function getCountProductServer(query: string, rows: number) {
   const { count } = await supabase
-    .from("suppliers")
+    .from("products")
     .select("*", { count: "exact", head: true })
     .ilike("name", `%${query}%`);
 
   return count == null ? 0 : Math.ceil(count / rows);
 }
 
-export async function getAllSupplierByRangeServer(
+export async function getAllProductByRangeServer(
   currentPage: number,
   query: string,
   rows: number
@@ -66,19 +64,19 @@ export async function getAllSupplierByRangeServer(
   const initialPosition = rows * (currentPage - 1);
   const lastPosition = rows * currentPage - 1;
 
-  const { data: suppliers } = await supabase
-    .from("suppliers")
-    .select("*")
+  const { data: products } = await supabase
+    .rpc("get_all_products_categories")
     .ilike("name", `%${query}%`)
+    .select("*")
     .range(initialPosition, lastPosition)
     .order("name");
 
-  return suppliers;
+  return products;
 }
 
-export async function getUniqueSupplierServer(id: string) {
+export async function getUniqueProductServer(id: string) {
   const { data } = await supabase
-    .from("suppliers")
+    .from("products")
     .select("*")
     .eq("id", id)
     .single();

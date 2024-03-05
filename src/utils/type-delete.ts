@@ -1,6 +1,7 @@
 import { TypeDeleteForm } from "@/models/enum_models";
 import { FormDeleteState } from "@/models/state_forms";
 import { deleteCategory } from "@/services/category/client";
+import { deleteProduct } from "@/services/product/client";
 import { deleteSupplier } from "@/services/supplier/client";
 
 async function deleteDefaultError(
@@ -16,6 +17,8 @@ export const getDelete = (v: TypeDeleteForm) => {
       return deleteCategory;
     case TypeDeleteForm.SUPPLIER:
       return deleteSupplier;
+    case TypeDeleteForm.PRODUCT:
+      return deleteProduct;
     default:
       return deleteDefaultError;
   }

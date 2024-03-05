@@ -47,7 +47,7 @@ export async function getCountCategoryServer(query: string, rows: number) {
   return count == null ? 0 : Math.ceil(count / rows);
 }
 
-export async function getAllCategoryServer(
+export async function getAllCategoryByRangeServer(
   currentPage: number,
   query: string,
   rows: number
@@ -56,11 +56,19 @@ export async function getAllCategoryServer(
   const lastPosition = rows * currentPage - 1;
 
   const { data: categories } = await supabase
-    .from("categories")
-    .select("*")
+    .rpc("get_all_categories_count_product")
     .ilike("name", `%${query}%`)
+    .select("*")
     .range(initialPosition, lastPosition)
     .order("name");
 
+  return categories;
+}
+
+export async function getAllCategoryServer() {
+  const { data: categories } = await supabase
+    .from("categories")
+    .select("*")
+    .order("name");
   return categories;
 }

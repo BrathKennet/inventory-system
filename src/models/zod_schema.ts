@@ -22,3 +22,15 @@ export const FormSupplierSchema = z.object({
   phone: z.string().trim().min(1, { message: "Supplier phone is required" }),
   email: z.string().trim().min(1, { message: "Supplier email is required" }),
 });
+
+export const FormProductSchema = z.object({
+  categoryId: z
+    .string({ invalid_type_error: "Category is required" })
+    .trim()
+    .min(1, { message: "Category is required" }),
+  name: z.string().trim().min(1, { message: "Product name is required" }),
+  description: z
+    .string()
+    .trim()
+    .min(1, { message: "Product description is required" }),
+});

@@ -1,12 +1,11 @@
-import { getAllSupplierByRangeServer } from "@/services/supplier/server";
+import { getAllProductByRangeServer } from "@/services/product/server";
+import LinkIcon from "../buttons/link-icon";
 import DeleteAlert from "../alert/delete";
 import { TypeDeleteForm } from "@/models/enum_models";
-import Link from "next/link";
-import LinkIcon from "../buttons/link-icon";
 import ShowAlert from "../alert/show";
-import ShowSupplier from "../show/supplier";
+import ShowProduct from "../show/product";
 
-export default async function SupplierTable({
+export default async function ProductTable({
   query,
   currentPage,
   rows,
@@ -15,47 +14,45 @@ export default async function SupplierTable({
   currentPage: number;
   rows: number;
 }) {
-  const suppliers = await getAllSupplierByRangeServer(currentPage, query, rows);
+  const products = await getAllProductByRangeServer(currentPage, query, rows);
 
   return (
     <div className="mb-2 mt-4">
       <table className="border-collapse  bg-background_s rounded-sm w-full ">
         <caption className="caption-bottom mt-3 text-primary">
-          {suppliers?.length == 0 && "No results"}
+          {products?.length == 0 && "No results"}
         </caption>
         <thead className="text-primary bg-secondary text-base">
           <tr>
             <th className="border border-gray-500 w-[25%] p-1">Name</th>
             <th className="border border-gray-500 w-[20%] max-sm:hidden">
-              Address
+              Category
             </th>
-            <th className="border border-gray-500 w-[15%] max-lg:hidden">
-              Phone
+            <th className="border border-gray-500 max-lg:hidden">
+              Description
             </th>
-            <th className="border border-gray-500 max-lg:hidden">Email</th>
+            <th className="border border-gray-500 w-[10%]">Total Stock</th>
             <th className="border border-gray-500 w-[20%]">Actions</th>
           </tr>
         </thead>
         <tbody className="text-gray-300 text-base">
-          {suppliers?.map((v) => (
+          {products?.map((v) => (
             <tr key={v.name}>
               <td className="border border-gray-500 p-1.5">{v.name}</td>
               <td className="border border-gray-500 p-1.5 max-sm:hidden">
-                {v.address}
+                {v.name_category}
               </td>
               <td className="border border-gray-500 p-1.5 max-lg:hidden">
-                {v.phone}
+                {v.description}
               </td>
-              <td className="border border-gray-500 p-1.5 max-lg:hidden">
-                {v.email}
-              </td>
+              <td className="border border-gray-500 p-1.5 ">{v.total_stock}</td>
               <td className="border border-gray-500 p-1.5 ">
                 <div className="flex flex-wrap justify-center gap-x-3 w-fit mx-auto">
                   <ShowAlert>
-                    <ShowSupplier supplier={v} />
+                    <ShowProduct product={v} />
                   </ShowAlert>
                   <LinkIcon
-                    href={`/suppliers/edit?id=${v.id}`}
+                    href={`/products/edit?id=${v.id}`}
                     src="/svg/edit.svg"
                     alt="edit"
                     title="edit"
@@ -63,7 +60,7 @@ export default async function SupplierTable({
                   <DeleteAlert
                     id={v.id}
                     name={v.name}
-                    type={TypeDeleteForm.SUPPLIER}
+                    type={TypeDeleteForm.PRODUCT}
                   />
                 </div>
               </td>
