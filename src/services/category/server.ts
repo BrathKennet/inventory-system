@@ -4,7 +4,7 @@ import { supabase } from "@/config/supabase";
 import { revalidatePath } from "next/cache";
 
 export async function revalidateCategory() {
-  revalidatePath("/categories");
+  revalidatePath("/categories", "page");
 }
 
 export async function addCategoryServer(name: string) {

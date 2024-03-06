@@ -4,7 +4,7 @@ import { supabase } from "@/config/supabase";
 import { revalidatePath } from "next/cache";
 
 export async function revalidateProduct() {
-  revalidatePath("/products");
+  revalidatePath("/products", "page");
 }
 
 export async function addProductServer(
@@ -65,12 +65,20 @@ export async function getAllProductByRangeServer(
   const lastPosition = rows * currentPage - 1;
 
   const { data: products } = await supabase
-    .rpc("get_all_products_categories")
+    .rpc("get_all_products_categories_stock")
     .ilike("name", `%${query}%`)
     .select("*")
     .range(initialPosition, lastPosition)
     .order("name");
 
+  return products;
+}
+
+export async function getAllProductServer() {
+  const { data: products } = await supabase
+    .from("products")
+    .select("*")
+    .order("name");
   return products;
 }
 

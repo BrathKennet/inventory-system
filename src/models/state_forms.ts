@@ -45,3 +45,19 @@ export type FormProductState =
       message?: string | null;
     }
   | undefined;
+
+export type FormLotState =
+  | {
+      errors?: {
+        productId?: string[];
+        supplierId?: string[];
+        purchaseQuantity?: string[];
+        stock?: string[];
+        purchasePriceUnit?: string[];
+        salePriceUnit?: string[];
+        purchaseDate?: string[];
+        expirationDate?: string[];
+      };
+      message?: string | null;
+    }
+  | undefined;

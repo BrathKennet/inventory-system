@@ -8,7 +8,7 @@ export default function Layout({
   return (
     <main className="flex h-screen ">
       <Sidenav />
-      <section className="w-full pt-12 px-8 overflow-y-auto">
+      <section className="w-full py-12 px-8 overflow-y-auto">
         {children}
       </section>
     </main>

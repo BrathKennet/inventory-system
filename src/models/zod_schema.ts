@@ -34,3 +34,36 @@ export const FormProductSchema = z.object({
     .trim()
     .min(1, { message: "Product description is required" }),
 });
+
+export const FormLotSchema = z.object({
+  productId: z
+    .string({ invalid_type_error: "Product is required" })
+    .trim()
+    .min(1, { message: "Product is required" }),
+  supplierId: z
+    .string({ invalid_type_error: "Supplier is required" })
+    .trim()
+    .min(1, { message: "Supplier is required" }),
+  stock: z.coerce
+    .number({ invalid_type_error: "Please enter a number" })
+    .int({ message: "Quantity must be an integer" })
+    .gt(0, { message: "Please enter an quantity greater than 0." }),
+  purchaseQuantity: z.coerce
+    .number({ invalid_type_error: "Please enter a number" })
+    .int({ message: "Quantity must be an integer" })
+    .gt(0, { message: "Please enter an quantity greater than 0." }),
+  purchasePriceUnit: z.coerce
+    .number({ invalid_type_error: "Please enter a number" })
+    .gt(0, { message: "Please enter an price greater than 0." }),
+  salePriceUnit: z.coerce
+    .number({ invalid_type_error: "Please enter a number" })
+    .gt(0, { message: "Please enter an price greater than 0." }),
+  purchaseDate: z
+    .string()
+    .trim()
+    .min(1, { message: "Purchase date is required" }),
+  expirationDate: z
+    .string()
+    .trim()
+    .min(1, { message: "Expiration date is required" }),
+});

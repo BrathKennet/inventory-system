@@ -1,6 +1,7 @@
 import { TypeDeleteForm } from "@/models/enum_models";
 import { FormDeleteState } from "@/models/state_forms";
 import { deleteCategory } from "@/services/category/client";
+import { deleteLot } from "@/services/lot/client";
 import { deleteProduct } from "@/services/product/client";
 import { deleteSupplier } from "@/services/supplier/client";
 
@@ -19,6 +20,8 @@ export const getDelete = (v: TypeDeleteForm) => {
       return deleteSupplier;
     case TypeDeleteForm.PRODUCT:
       return deleteProduct;
+    case TypeDeleteForm.LOT:
+      return deleteLot;
     default:
       return deleteDefaultError;
   }

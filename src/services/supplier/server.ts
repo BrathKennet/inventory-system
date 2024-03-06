@@ -4,7 +4,7 @@ import { supabase } from "@/config/supabase";
 import { revalidatePath } from "next/cache";
 
 export async function revalidateSupplier() {
-  revalidatePath("/suppliers");
+  revalidatePath("/suppliers", "page");
 }
 
 export async function addSupplierServer(
@@ -73,6 +73,14 @@ export async function getAllSupplierByRangeServer(
     .range(initialPosition, lastPosition)
     .order("name");
 
+  return suppliers;
+}
+
+export async function getAllSupplierServer() {
+  const { data: suppliers } = await supabase
+    .from("suppliers")
+    .select("*")
+    .order("name");
   return suppliers;
 }
 

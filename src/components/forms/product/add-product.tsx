@@ -2,7 +2,7 @@
 
 import SubmitButton from "@/components/buttons/submit";
 import InputGeneral from "@/components/input/input-general";
-import SelectGeneral from "@/components/select";
+import SelectGeneral from "@/components/select/select-general";
 import { TypeButton } from "@/models/enum_models";
 import { addProduct } from "@/services/product/client";
 import { useFormState } from "react-dom";
