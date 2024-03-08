@@ -31,7 +31,7 @@ export default function ShowAlert({
       </button>
       {open && (
         <div className="bg-black/15 h-screen w-screen absolute top-0 left-0 z-50 flex justify-center items-center">
-          <div className="bg-background_s rounded-xl border border-secondary max-w-96 h-fit text-center p-3">
+          <div className="bg-background_s rounded-xl border border-secondary max-w-96 h-fit text-center p-3 max-h-screen overflow-y-scroll">
             <button
               className="hover:brightness-125 duration-500"
               onClick={() => setOpen(false)}

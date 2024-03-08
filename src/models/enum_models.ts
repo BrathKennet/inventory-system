@@ -3,6 +3,8 @@ export enum TypeDeleteForm {
   PRODUCT,
   SUPPLIER,
   LOT,
+  CLIENT,
+  SALE,
 }
 
 export enum TypeButton {

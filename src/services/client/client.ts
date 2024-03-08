@@ -1,16 +1,11 @@
-import { FormPersonState, FormDeleteState } from "@/models/state_forms";
+import { FormDeleteState, FormPersonState } from "@/models/state_forms";
 import { FormPersonSchema } from "@/models/zod_schema";
-import {
-  addSupplierServer,
-  deleteSupplierServer,
-  editSupplierServer,
-  revalidateSupplier,
-} from "./server";
-import { TypeToast } from "@/models/enum_models";
+import { addClientServer, deleteClientServer, editClientServer, revalidateClient } from "./server";
 import { showToast } from "@/components/toast";
+import { TypeToast } from "@/models/enum_models";
 import { redirect } from "next/navigation";
 
-export async function addSupplier(
+export async function addClient(
   prevState: FormPersonState,
   formData: FormData
 ): Promise<FormPersonState> {
@@ -32,20 +27,20 @@ export async function addSupplier(
     };
   }
 
-  const { errorMessage } = await addSupplierServer(name, address, phone, email);
+  const { errorMessage } = await addClientServer(name, address, phone, email);
 
   if (errorMessage) {
     console.log(errorMessage);
     return { message: errorMessage };
   }
 
-  showToast("Added Supplier", TypeToast.SUCCESS);
+  showToast("Added Client", TypeToast.SUCCESS);
 
-  await revalidateSupplier();
-  redirect("/suppliers");
+  await revalidateClient();
+  redirect("/clients");
 }
 
-export async function editSupplier(
+export async function editClient(
   prevState: FormPersonState,
   formData: FormData
 ): Promise<FormPersonState> {
@@ -68,7 +63,7 @@ export async function editSupplier(
     };
   }
 
-  const { errorMessage } = await editSupplierServer(
+  const { errorMessage } = await editClientServer(
     id,
     name,
     address,
@@ -81,27 +76,27 @@ export async function editSupplier(
     return { message: errorMessage };
   }
 
-  showToast("Edited Supplier", TypeToast.SUCCESS);
+  showToast("Edited Client", TypeToast.SUCCESS);
 
-  await revalidateSupplier();
-  redirect("/suppliers");
+  await revalidateClient();
+  redirect("/clients");
 }
 
-export async function deleteSupplier(
+export async function deleteClient(
   prevState: FormDeleteState,
   formData: FormData
 ): Promise<FormDeleteState> {
   const id = formData.get("id") as string;
 
-  const { errorMessage } = await deleteSupplierServer(id);
+  const { errorMessage } = await deleteClientServer(id);
 
   if (errorMessage) {
     console.log(errorMessage);
     return { message: errorMessage };
   }
 
-  showToast("Deleted Supplier", TypeToast.ERROR);
+  showToast("Deleted Client", TypeToast.ERROR);
 
-  await revalidateSupplier();
-  redirect("/suppliers");
+  await revalidateClient();
+  redirect("/clients");
 }

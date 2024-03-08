@@ -71,7 +71,7 @@ export default function AddLotForm({
                 error={formState?.errors && formState.errors.purchaseDate}
               />
               <InputGeneral
-                label="Expiration Data"
+                label="Expiration Date"
                 type="date"
                 id="expirationDate"
                 name="expirationDate"

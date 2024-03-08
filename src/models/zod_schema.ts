@@ -13,7 +13,7 @@ export const FormCategorySchema = z.object({
   name: z.string().trim().min(1, { message: "Category name is required" }),
 });
 
-export const FormSupplierSchema = z.object({
+export const FormPersonSchema = z.object({
   name: z.string().trim().min(1, { message: "Supplier name is required" }),
   address: z
     .string()
@@ -46,12 +46,12 @@ export const FormLotSchema = z.object({
     .min(1, { message: "Supplier is required" }),
   stock: z.coerce
     .number({ invalid_type_error: "Please enter a number" })
-    .int({ message: "Quantity must be an integer" })
-    .gt(0, { message: "Please enter an quantity greater than 0." }),
+    .int({ message: "Stock must be an integer" })
+    .gt(0, { message: "Please enter a stock greater than 0." }),
   purchaseQuantity: z.coerce
     .number({ invalid_type_error: "Please enter a number" })
     .int({ message: "Quantity must be an integer" })
-    .gt(0, { message: "Please enter an quantity greater than 0." }),
+    .gt(0, { message: "Please enter a quantity greater than 0." }),
   purchasePriceUnit: z.coerce
     .number({ invalid_type_error: "Please enter a number" })
     .gt(0, { message: "Please enter an price greater than 0." }),
@@ -67,3 +67,27 @@ export const FormLotSchema = z.object({
     .trim()
     .min(1, { message: "Expiration date is required" }),
 });
+
+export const FormSaleSchema = z.object({
+  clientId: z
+    .string({ invalid_type_error: "Client is required" })
+    .trim()
+    .min(1, { message: "Client is required" }),
+  saleDate: z.string().trim().min(1, { message: "Sale date is required" }),
+});
+
+export const generateFormSelectSchema = (maxQuantity: number) => {
+  return z.object({
+    lotId: z
+      .string({ invalid_type_error: "Product is required" })
+      .trim()
+      .min(1, { message: "Product is required" }),
+    quantityId: z.coerce
+      .number({ invalid_type_error: "Please enter a number" })
+      .int({ message: "Quantity must be an integer" })
+      .gt(0, { message: "Please enter a quantity greater than 0." })
+      .lt(maxQuantity + 1, {
+        message: `Please enter a quantity less than or equal to ${maxQuantity}.`,
+      }),
+  });
+};

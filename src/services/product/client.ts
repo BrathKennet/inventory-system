@@ -102,4 +102,5 @@ export async function deleteProduct(
   showToast("Deleted Product", TypeToast.ERROR);
 
   await revalidateProduct();
+  redirect("/products");
 }

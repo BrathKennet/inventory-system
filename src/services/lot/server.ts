@@ -105,6 +105,15 @@ export async function getAllLotByRangeServer(
   return lots;
 }
 
+export async function getAllLotServer() {
+  const { data: lots } = await supabase
+    .rpc("get_all_lots_products_suppliers")
+    .select("*")
+    .order("name_product");
+
+  return lots;
+}
+
 export async function getUniqueLotServer(id: string) {
   const { data } = await supabase
     .from("lots")
@@ -113,4 +122,16 @@ export async function getUniqueLotServer(id: string) {
     .single();
 
   return data;
+}
+
+export async function updateStockLotServer(id: string, stock: number) {
+  const { data, error } = await supabase
+    .from("lots")
+    .update([{ stock }])
+    .eq("id", id)
+    .select();
+
+  const errorMessage = error?.message;
+
+  return { data, errorMessage };
 }

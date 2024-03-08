@@ -1,11 +1,11 @@
-import { getAllSupplierByRangeServer } from "@/services/supplier/server";
 import DeleteAlert from "../alert/delete";
 import { Hidden, TypeDeleteForm } from "@/models/enum_models";
 import LinkIcon from "../buttons/link-icon";
 import ShowAlert from "../alert/show";
 import ShowPerson from "../show/person";
+import { getAllClientByRangeServer } from "@/services/client/server";
 
-export default async function SupplierTable({
+export default async function ClientTable({
   query,
   currentPage,
   rows,
@@ -14,13 +14,13 @@ export default async function SupplierTable({
   currentPage: number;
   rows: number;
 }) {
-  const suppliers = await getAllSupplierByRangeServer(currentPage, query, rows);
+  const clients = await getAllClientByRangeServer(currentPage, query, rows);
 
   return (
     <div className="mb-2 mt-4 overflow-x-auto">
       <table className="border-collapse bg-background_s rounded-sm w-full ">
         <caption className="caption-bottom mt-3 text-primary">
-          {suppliers?.length == 0 && "No results"}
+          {clients?.length == 0 && "No results"}
         </caption>
         <thead className="text-primary bg-secondary text-base">
           <tr>
@@ -36,7 +36,7 @@ export default async function SupplierTable({
           </tr>
         </thead>
         <tbody className="text-gray-300 text-base">
-          {suppliers?.map((v) => (
+          {clients?.map((v) => (
             <tr key={v.name}>
               <td className="border border-primary/40 p-1.5">{v.name}</td>
               <td className="border border-primary/40 p-1.5 max-sm:hidden">
@@ -54,13 +54,13 @@ export default async function SupplierTable({
                     <ShowPerson person={v} />
                   </ShowAlert>
                   <LinkIcon
-                    href={`/lots/add?idSupplier=${v.id}`}
+                    href={`/sales/add?idClient=${v.id}`}
                     src="/svg/add.svg"
                     alt="add"
-                    title="add lot"
+                    title="add sale"
                   />
                   <LinkIcon
-                    href={`/suppliers/edit?id=${v.id}`}
+                    href={`/clients/edit?id=${v.id}`}
                     src="/svg/edit.svg"
                     alt="edit"
                     title="edit"
@@ -68,7 +68,7 @@ export default async function SupplierTable({
                   <DeleteAlert
                     id={v.id}
                     name={v.name}
-                    type={TypeDeleteForm.SUPPLIER}
+                    type={TypeDeleteForm.CLIENT}
                   />
                 </div>
               </td>

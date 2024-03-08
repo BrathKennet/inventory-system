@@ -131,4 +131,5 @@ export async function deleteLot(
   showToast("Deleted Lot", TypeToast.ERROR);
 
   await revalidateLot();
+  redirect("/lots");
 }

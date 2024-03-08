@@ -16,6 +16,7 @@ export default function SubmitButton({
   const status = useFormStatus();
   return (
     <button
+      type="submit"
       disabled={status.pending}
       className={clsx(
         "hover:bg-opacity-80 duration-500 rounded-md w-full px-2 py-1",

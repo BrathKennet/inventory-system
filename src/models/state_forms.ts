@@ -23,7 +23,7 @@ export type FormCategoryState =
     }
   | undefined;
 
-export type FormSupplierState =
+export type FormPersonState =
   | {
       errors?: {
         name?: string[];
@@ -57,6 +57,22 @@ export type FormLotState =
         salePriceUnit?: string[];
         purchaseDate?: string[];
         expirationDate?: string[];
+      };
+      message?: string | null;
+    }
+  | undefined;
+
+export type FormSaleState =
+  | {
+      errors?: {
+        clientId?: string[];
+        saleDate?: string[];
+      };
+      errorsSelect?: {
+        [key: number]: {
+          lotId?: string[];
+          quantityId?: string[];
+        };
       };
       message?: string | null;
     }
