@@ -1,5 +1,5 @@
 import { showToast } from "@/components/toast";
-import { TypeToast } from "@/models/enum_models";
+import { TypeToast, TypeTransaction } from "@/models/enum_models";
 import { FormDeleteState, FormSaleState } from "@/models/state_forms";
 import { FormSaleSchema, generateFormSelectSchema } from "@/models/zod_schema";
 import {
@@ -10,6 +10,9 @@ import {
 } from "./server";
 import { redirect } from "next/navigation";
 import { updateStockLotServer } from "../lot/server";
+import { addTransactionServer } from "../transaction/server";
+import { getIdTransaction } from "@/utils/type-transaction";
+import { getUniqueProductServer } from "../product/server";
 
 export async function addSale(
   prevState: FormSaleState,
@@ -65,8 +68,6 @@ export async function addSale(
     totalSold += Number(quantityId) * Number(detailLot.split("|")[2]);
   }
 
-  
-
   const { errorMessage } = await addSaleServer(
     clientId,
     quantitySold,
@@ -84,6 +85,8 @@ export async function addSale(
     const lotId = formData.get(`lotId${i}`) as string;
     const detailLot = formData.get(`detailLot${i}`) as string;
     const maxQuantity = Number(detailLot ? detailLot.split("|")[3] : 0);
+    const productId = detailLot ? detailLot.split("|")[4] : "";
+    const productName = detailLot ? detailLot.split("|")[1] : "";
     const quantityId = Number(formData.get(`quantityId${i}`) as string);
 
     const result = await updateStockLotServer(lotId, maxQuantity - quantityId);
@@ -91,6 +94,18 @@ export async function addSale(
     if (result.errorMessage) {
       console.log(result.errorMessage);
       return { message: result.errorMessage };
+    }
+
+    const resultTransaction = await addTransactionServer(
+      getIdTransaction(TypeTransaction.SOLD),
+      Number(quantityId),
+      new Date(saleDate),
+      productId,
+      productName
+    );
+
+    if (resultTransaction.errorMessage) {
+      showToast("Error Added Transaction", TypeToast.ERROR);
     }
   }
 

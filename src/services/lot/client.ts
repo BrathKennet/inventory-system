@@ -1,5 +1,5 @@
 import { showToast } from "@/components/toast";
-import { TypeToast } from "@/models/enum_models";
+import { TypeToast, TypeTransaction } from "@/models/enum_models";
 import { FormDeleteState, FormLotState } from "@/models/state_forms";
 import { FormLotSchema } from "@/models/zod_schema";
 import {
@@ -7,8 +7,12 @@ import {
   deleteLotServer,
   editLotServer,
   revalidateLot,
+  updateStockLotServer,
 } from "./server";
 import { redirect } from "next/navigation";
+import { addTransactionServer } from "../transaction/server";
+import { getIdTransaction } from "@/utils/type-transaction";
+import { getUniqueProductServer } from "../product/server";
 
 export async function addLot(
   prevState: FormLotState,
@@ -40,7 +44,7 @@ export async function addLot(
     };
   }
 
-  const { data, errorMessage } = await addLotServer(
+  const { errorMessage } = await addLotServer(
     productId,
     supplierId,
     Number(purchaseQuantity),
@@ -55,7 +59,21 @@ export async function addLot(
     return { message: errorMessage };
   }
 
+  const product = await getUniqueProductServer(productId);
+
+  const result = await addTransactionServer(
+    getIdTransaction(TypeTransaction.ADD),
+    Number(purchaseQuantity),
+    new Date(purchaseDate),
+    productId,
+    product.name
+  );
+
   showToast("Added Lot", TypeToast.SUCCESS);
+
+  if (result.errorMessage) {
+    showToast("Error Added Transaction", TypeToast.ERROR);
+  }
 
   await revalidateLot();
   redirect("/lots");
@@ -129,6 +147,40 @@ export async function deleteLot(
   }
 
   showToast("Deleted Lot", TypeToast.ERROR);
+
+  await revalidateLot();
+  redirect("/lots");
+}
+
+export async function removeStockLot(
+  prevState: FormDeleteState,
+  formData: FormData
+): Promise<FormDeleteState> {
+  const id = formData.get("id") as string;
+  const quantity = formData.get("stock") as string;
+  const productId = formData.get("productId") as string;
+  const productName = formData.get("productName") as string;
+
+  const { errorMessage } = await updateStockLotServer(id, 0);
+
+  if (errorMessage) {
+    console.log(errorMessage);
+    return { message: errorMessage };
+  }
+
+  const result = await addTransactionServer(
+    getIdTransaction(TypeTransaction.REMOVE),
+    Number(quantity),
+    new Date(),
+    productId,
+    productName
+  );
+
+  showToast("Stock Empty", TypeToast.ERROR);
+
+  if (result.errorMessage) {
+    showToast("Error Added Transaction", TypeToast.ERROR);
+  }
 
   await revalidateLot();
   redirect("/lots");

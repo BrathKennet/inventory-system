@@ -4,6 +4,7 @@ import LinkIcon from "../buttons/link-icon";
 import DeleteAlert from "../alert/delete";
 import { TypeDeleteForm } from "@/models/enum_models";
 import ShowLot from "../show/lot";
+import RemoveStockAlert from "../alert/remove-stock";
 
 export default async function LotTable({
   query,
@@ -65,6 +66,7 @@ export default async function LotTable({
                   <ShowAlert>
                     <ShowLot lot={v} />
                   </ShowAlert>
+                  <RemoveStockAlert lot={v} />
                   <LinkIcon
                     href={`/lots/edit?id=${v.id}`}
                     src="/svg/edit.svg"

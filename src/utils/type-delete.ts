@@ -6,6 +6,7 @@ import { deleteLot } from "@/services/lot/client";
 import { deleteProduct } from "@/services/product/client";
 import { deleteSale } from "@/services/sale/client";
 import { deleteSupplier } from "@/services/supplier/client";
+import { deleteTransaction } from "@/services/transaction/client";
 
 async function deleteDefaultError(
   prevState: FormDeleteState,
@@ -28,6 +29,8 @@ export const getDelete = (v: TypeDeleteForm) => {
       return deleteClient;
     case TypeDeleteForm.SALE:
       return deleteSale;
+    case TypeDeleteForm.TRANSACTION:
+      return deleteTransaction;
     default:
       return deleteDefaultError;
   }

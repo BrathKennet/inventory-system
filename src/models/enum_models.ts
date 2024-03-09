@@ -5,6 +5,7 @@ export enum TypeDeleteForm {
   LOT,
   CLIENT,
   SALE,
+  TRANSACTION,
 }
 
 export enum TypeButton {
@@ -21,4 +22,10 @@ export enum Hidden {
   SM,
   MD,
   LG,
+}
+
+export enum TypeTransaction {
+  ADD,
+  SOLD,
+  REMOVE,
 }

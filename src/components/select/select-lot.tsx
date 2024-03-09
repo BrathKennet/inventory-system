@@ -26,7 +26,7 @@ export default function SelectLot({
         id={`detailLot${index}`}
         name={`detailLot${index}`}
         className="hidden"
-        value={`${lotSelect?.id}|${lotSelect?.name_product}|${lotSelect?.sale_price_unit}|${lotSelect?.stock}`}
+        value={`${lotSelect?.id}|${lotSelect?.name_product}|${lotSelect?.sale_price_unit}|${lotSelect?.stock}|${lotSelect?.id_product}`}
         readOnly
       />
       <div className="w-full">
