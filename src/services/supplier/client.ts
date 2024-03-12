@@ -32,11 +32,10 @@ export async function addSupplier(
     };
   }
 
-  const { errorMessage } = await addSupplierServer(name, address, phone, email);
+  const { data, errorMessage } = await addSupplierServer(name, address, phone, email);
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Added Supplier", TypeToast.SUCCESS);
@@ -68,7 +67,7 @@ export async function editSupplier(
     };
   }
 
-  const { errorMessage } = await editSupplierServer(
+  const { data, errorMessage } = await editSupplierServer(
     id,
     name,
     address,
@@ -76,9 +75,8 @@ export async function editSupplier(
     email
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Edited Supplier", TypeToast.SUCCESS);
@@ -96,8 +94,7 @@ export async function deleteSupplier(
   const { errorMessage } = await deleteSupplierServer(id);
 
   if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Deleted Supplier", TypeToast.ERROR);

@@ -25,11 +25,10 @@ export async function addCategory(
     };
   }
 
-  const { errorMessage } = await addCategoryServer(name);
+  const { data, errorMessage } = await addCategoryServer(name);
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Added Category", TypeToast.SUCCESS);
@@ -54,11 +53,10 @@ export async function editCategory(
     };
   }
 
-  const { errorMessage } = await editCategoryServer(id, name);
+  const { data, errorMessage } = await editCategoryServer(id, name);
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Edited Category", TypeToast.SUCCESS);
@@ -75,7 +73,6 @@ export async function deleteCategory(
   const { errorMessage } = await deleteCategoryServer(id);
 
   if (errorMessage) {
-    console.log(errorMessage);
     return { message: errorMessage };
   }
 

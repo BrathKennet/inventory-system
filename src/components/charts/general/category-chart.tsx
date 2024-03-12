@@ -9,7 +9,7 @@ export default async function CategoryChart() {
   return (
     <div className="border p-4 rounded-xl xl:w-full lg:w-[60%] sm:w-[80%] w-full border-primary ">
       <p className="uppercase text-lg">Categories: </p>
-      {categories ? (
+      {categories && categories.length > 1 ? (
         <TemplatePieChart id="Categories" labels={labels} series={series} />
       ) : (
         <p>No Data</p>

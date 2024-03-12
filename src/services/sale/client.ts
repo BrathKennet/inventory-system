@@ -12,7 +12,6 @@ import { redirect } from "next/navigation";
 import { updateStockLotServer } from "../lot/server";
 import { addTransactionServer } from "../transaction/server";
 import { getIdTransaction } from "@/utils/type-transaction";
-import { getUniqueProductServer } from "../product/server";
 
 export async function addSale(
   prevState: FormSaleState,
@@ -68,7 +67,7 @@ export async function addSale(
     totalSold += Number(quantityId) * Number(detailLot.split("|")[2]);
   }
 
-  const { errorMessage } = await addSaleServer(
+  const { data, errorMessage } = await addSaleServer(
     clientId,
     quantitySold,
     totalSold,
@@ -76,9 +75,8 @@ export async function addSale(
     detail
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   for (let i = 0; i < Number(totalSelect); i++) {
@@ -91,9 +89,10 @@ export async function addSale(
 
     const result = await updateStockLotServer(lotId, maxQuantity - quantityId);
 
-    if (result.errorMessage) {
-      console.log(result.errorMessage);
-      return { message: result.errorMessage };
+    if (!result.data || result.errorMessage) {
+      return {
+        message: result.errorMessage ? result.errorMessage : "An error occurred",
+      };
     }
 
     const resultTransaction = await addTransactionServer(
@@ -170,7 +169,7 @@ export async function editSale(
     totalSold += Number(quantityId) * Number(detailLot.split("|")[2]);
   }
 
-  const { errorMessage } = await editSaleServer(
+  const { data, errorMessage } = await editSaleServer(
     id,
     clientId,
     quantitySold,
@@ -179,9 +178,8 @@ export async function editSale(
     detail
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   for (let i = 0; i < Number(totalSelect); i++) {
@@ -192,9 +190,10 @@ export async function editSale(
 
     const result = await updateStockLotServer(lotId, maxQuantity - quantityId);
 
-    if (result.errorMessage) {
-      console.log(result.errorMessage);
-      return { message: result.errorMessage };
+    if (!result.data || result.errorMessage) {
+      return {
+        message: result.errorMessage ? result.errorMessage : "An error occurred",
+      };
     }
   }
 
@@ -213,8 +212,7 @@ export async function deleteSale(
   const { errorMessage } = await deleteSaleServer(id);
 
   if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Deleted Sale", TypeToast.ERROR);

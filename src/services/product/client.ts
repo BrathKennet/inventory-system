@@ -30,15 +30,14 @@ export async function addProduct(
     };
   }
 
-  const { errorMessage } = await addProductServer(
+  const { data, errorMessage } = await addProductServer(
     categoryId,
     name,
     description
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Added Product", TypeToast.SUCCESS);
@@ -68,16 +67,15 @@ export async function editProduct(
     };
   }
 
-  const { errorMessage } = await editProductServer(
+  const { data, errorMessage } = await editProductServer(
     id,
     categoryId,
     name,
     description
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Edited Product", TypeToast.SUCCESS);
@@ -95,8 +93,7 @@ export async function deleteProduct(
   const { errorMessage } = await deleteProductServer(id);
 
   if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Deleted Product", TypeToast.ERROR);

@@ -44,7 +44,7 @@ export async function addLot(
     };
   }
 
-  const { errorMessage } = await addLotServer(
+  const { data, errorMessage } = await addLotServer(
     productId,
     supplierId,
     Number(purchaseQuantity),
@@ -54,9 +54,8 @@ export async function addLot(
     new Date(expirationDate)
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   const product = await getUniqueProductServer(productId);
@@ -122,9 +121,8 @@ export async function editLot(
     new Date(expirationDate)
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Edited Lot", TypeToast.SUCCESS);
@@ -142,8 +140,7 @@ export async function deleteLot(
   const { errorMessage } = await deleteLotServer(id);
 
   if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Deleted Lot", TypeToast.ERROR);
@@ -161,11 +158,10 @@ export async function removeStockLot(
   const productId = formData.get("productId") as string;
   const productName = formData.get("productName") as string;
 
-  const { errorMessage } = await updateStockLotServer(id, 0);
+  const { data, errorMessage } = await updateStockLotServer(id, 0);
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   const result = await addTransactionServer(

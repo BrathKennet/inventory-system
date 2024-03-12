@@ -13,8 +13,7 @@ export async function deleteTransaction(
   const { errorMessage } = await deleteTransactionServer(id);
 
   if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Deleted Transaction", TypeToast.ERROR);

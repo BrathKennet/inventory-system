@@ -14,7 +14,7 @@ export default async function SaleChart() {
   return (
     <div className="border p-4 rounded-xl w-full border-primary xl:col-span-2 ">
       <p className="uppercase text-lg">Sales Movement: </p>
-      {sales ? (
+      {sales && sales.length > 1 ? (
         <TemplateLineChart
           id="sales"
           titleYAxis="Total Sold"

@@ -27,11 +27,10 @@ export async function addClient(
     };
   }
 
-  const { errorMessage } = await addClientServer(name, address, phone, email);
+  const { data, errorMessage } = await addClientServer(name, address, phone, email);
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Added Client", TypeToast.SUCCESS);
@@ -63,7 +62,7 @@ export async function editClient(
     };
   }
 
-  const { errorMessage } = await editClientServer(
+  const { data, errorMessage } = await editClientServer(
     id,
     name,
     address,
@@ -71,9 +70,8 @@ export async function editClient(
     email
   );
 
-  if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+  if (!data || errorMessage) {
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Edited Client", TypeToast.SUCCESS);
@@ -91,8 +89,7 @@ export async function deleteClient(
   const { errorMessage } = await deleteClientServer(id);
 
   if (errorMessage) {
-    console.log(errorMessage);
-    return { message: errorMessage };
+    return { message: errorMessage ? errorMessage : "An error occurred" };
   }
 
   showToast("Deleted Client", TypeToast.ERROR);

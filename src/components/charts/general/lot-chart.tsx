@@ -14,7 +14,7 @@ export default async function LotChart() {
   return (
     <div className="border p-4 rounded-xl w-full border-primary xl:col-span-2 ">
       <p className="uppercase text-lg">Stock Quantity Movement: </p>
-      {lots ? (
+      {lots && lots.length > 1 ? (
         <TemplateLineChart
           id="lots"
           titleYAxis="Qty"

@@ -26,7 +26,6 @@ export async function login(
   const error = await signInWithPassword(email, password);
 
   if (error) {
-    console.log(error);
     return { message: error };
   }
 
