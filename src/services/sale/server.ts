@@ -73,11 +73,7 @@ export async function getCountSaleServer(query: string, rows: number) {
     .select("*")
     .single();
 
-  if (error) {
-    return 0;
-  }
-
-  return Math.ceil(data.count / rows);
+  return error ? 0 : Math.ceil(data.count / rows);
 }
 
 export async function getAllSaleByRangeServer(
@@ -94,6 +90,16 @@ export async function getAllSaleByRangeServer(
     .select("*")
     .range(initialPosition, lastPosition)
     .order("sale_date", { ascending: false });
+
+  return suppliers;
+}
+
+export async function getAllSaleServer(
+) {
+  const { data: suppliers } = await supabase
+    .rpc("get_all_sales_clients")
+    .select("*")
+    .order("sale_date");
 
   return suppliers;
 }

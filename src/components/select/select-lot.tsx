@@ -17,8 +17,8 @@ export default function SelectLot({
   lotSelect: any;
   defaultValueQ?: any;
 }) {
-  const fechaHoy = new Date();
-  fechaHoy.setDate(fechaHoy.getDate() - 1);
+  const dateNow = new Date();
+  dateNow.setDate(dateNow.getDate() - 1);
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function SelectLot({
             <option
               key={lotSelect.id}
               value={lotSelect.id}
-              /* disabled={new Date(lotSelect.expiration_date) < fechaHoy} */
+              /* disabled={new Date(lotSelect.expiration_date) < dateNow} */
             >
               {`Product: ${lotSelect.name_product} - Price Unit: ${lotSelect.sale_price_unit} - Stock: ${lotSelect.stock} - Expiration: ${lotSelect.expiration_date}`}
             </option>
@@ -61,7 +61,7 @@ export default function SelectLot({
             <option
               key={v.id}
               value={v.id}
-              disabled={new Date(v.expiration_date) < fechaHoy}
+              disabled={new Date(v.expiration_date) < dateNow}
             >
               {`Product: ${v.name_product} - Price Unit: ${v.sale_price_unit} - Stock: ${v.stock} - Expiration: ${v.expiration_date}`}
             </option>

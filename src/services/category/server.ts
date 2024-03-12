@@ -72,3 +72,12 @@ export async function getAllCategoryServer() {
     .order("name");
   return categories;
 }
+
+export async function getAllCategoryCountProductServer() {
+  const { data: categories } = await supabase
+    .rpc("get_all_categories_count_product")
+    .select("*")
+    .order("name");
+
+  return categories;
+}

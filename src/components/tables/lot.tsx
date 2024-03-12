@@ -5,6 +5,7 @@ import DeleteAlert from "../alert/delete";
 import { TypeDeleteForm } from "@/models/enum_models";
 import ShowLot from "../show/lot";
 import RemoveStockAlert from "../alert/remove-stock";
+import clsx from "clsx";
 
 export default async function LotTable({
   query,
@@ -15,6 +16,9 @@ export default async function LotTable({
   currentPage: number;
   rows: number;
 }) {
+  const dateNow = new Date();
+  dateNow.setDate(dateNow.getDate() - 1);
+
   const lots = await getAllLotByRangeServer(currentPage, query, rows);
 
   return (
@@ -44,7 +48,12 @@ export default async function LotTable({
         </thead>
         <tbody className="text-gray-300 text-base">
           {lots?.map((v, i) => (
-            <tr key={i}>
+            <tr
+              key={i}
+              className={clsx({
+                "bg-red-700/30": new Date(v.expiration_date) < dateNow,
+              })}
+            >
               <td className="border border-primary/40 p-1.5">{v.stock}</td>
               <td className="border border-primary/40 p-1.5">
                 {v.sale_price_unit}
@@ -52,7 +61,9 @@ export default async function LotTable({
               <td className="border border-primary/40 p-1.5 max-sm:hidden">
                 {v.purchase_date}
               </td>
-              <td className="border border-primary/40 p-1.5 ">
+              <td
+                className="border border-primary/40 p-1.5"
+              >
                 {v.expiration_date}
               </td>
               <td className="border border-primary/40 p-1.5 ">

@@ -4,6 +4,7 @@ export default function SelectGeneral({
   label,
   options,
   error,
+  handleChange,
   defaultValue,
 }: {
   id: string;
@@ -11,6 +12,7 @@ export default function SelectGeneral({
   label: string;
   options: any[] | null;
   error?: string[];
+  handleChange?: any;
   defaultValue?: string;
 }) {
   return (
@@ -23,6 +25,7 @@ export default function SelectGeneral({
         name={name}
         className="h-10 w-full border-b-2 border-gray-300 text-gray-300 focus:border-primary focus:outline-none bg-secondary text-base"
         defaultValue={defaultValue ?? ""}
+        onChange={handleChange}
       >
         <option className="hidden" value="" disabled>
           {label}

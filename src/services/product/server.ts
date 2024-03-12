@@ -91,3 +91,12 @@ export async function getUniqueProductServer(id: string) {
 
   return data;
 }
+
+export async function getAllProductCountQuantityServer() {
+  const { data: products } = await supabase
+    .rpc("get_all_products_categories_stock")
+    .select("*")
+    .order("name");
+
+  return products;
+}

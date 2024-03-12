@@ -79,12 +79,12 @@ export async function deleteLotServer(id: string) {
 }
 
 export async function getCountLotServer(query: string, rows: number) {
-  const { count } = await supabase
-    .from("lots")
-    .select("*", { count: "exact", head: true })
-    .or(`name_product.ilike.%${query}%,name_supplier.ilike.%${query}%`);
+  const { data, error } = await supabase
+    .rpc("count_lots", { query })
+    .select("*")
+    .single();
 
-  return count == null ? 0 : Math.ceil(count / rows);
+  return error ? 0 : Math.ceil(data.count / rows);
 }
 
 export async function getAllLotByRangeServer(
@@ -100,7 +100,7 @@ export async function getAllLotByRangeServer(
     .or(`name_product.ilike.%${query}%,name_supplier.ilike.%${query}%`)
     .select("*")
     .range(initialPosition, lastPosition)
-    .order("purchase_date");
+    .order("purchase_date", { ascending: false });
 
   return lots;
 }
@@ -110,6 +110,15 @@ export async function getAllLotServer() {
     .rpc("get_all_lots_products_suppliers")
     .select("*")
     .order("name_product");
+
+  return lots;
+}
+
+export async function getAllLotOrderDateServer() {
+  const { data: lots } = await supabase
+    .rpc("get_all_lots_products_suppliers")
+    .select("*")
+    .order("purchase_date");
 
   return lots;
 }
