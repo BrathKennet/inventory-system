@@ -1,0 +1,41 @@
+/* You can change the user "test@gmail.com" to whatever you want. */
+
+CREATE POLICY "All options" ON "public"."categories"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))
+
+CREATE POLICY "All options" ON "public"."suppliers"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))
+
+CREATE POLICY "All options" ON "public"."clients"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))
+
+CREATE POLICY "All options" ON "public"."lots"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))
+
+CREATE POLICY "All options" ON "public"."products"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))
+
+CREATE POLICY "All options" ON "public"."sales"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))
+
+CREATE POLICY "All options" ON "public"."type_transaction"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))
+
+CREATE POLICY "All options" ON "public"."transactions"
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (((auth.jwt() ->> 'email'::text) = 'admin@gmail.com'::text))

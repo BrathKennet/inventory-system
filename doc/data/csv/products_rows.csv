@@ -1,0 +1,26 @@
+id,name,description,id_category
+5c2800a8-29e6-4d23-88c8-d01392f607c3,Ibuprofen,Pain reliever and anti-inflammatory,428648fe-a939-449c-a1f0-7e36ef7999af
+f2c4d773-0be3-4d9e-9586-bda66eb16ab3,Antacid Tablets,Antacid medication,428648fe-a939-449c-a1f0-7e36ef7999af
+cb6a4f95-47d1-4ab6-9b82-bba92077c4fe,Cough Syrup,Cough suppressant,428648fe-a939-449c-a1f0-7e36ef7999af
+c49b57b0-efbc-424d-9dd3-9b76e5fd4891,Toothpaste,Dental hygiene product,6275083e-adda-4ad3-8894-6b653a31dba1
+68509d46-e107-4065-b113-4ea2eb3ce646,Dental Floss,Dental hygiene product,6275083e-adda-4ad3-8894-6b653a31dba1
+666104d5-1289-4b85-8204-f6c7ce9e94bf,Shampoo,Hair cleaning product,6275083e-adda-4ad3-8894-6b653a31dba1
+5cf32926-b62f-4380-888b-2aff43153a47,Conditioner,Hair conditioning product,6275083e-adda-4ad3-8894-6b653a31dba1
+02363d41-7ab4-4795-8035-fe01f8ea316e,Body Lotion,Skin moisturizer,6275083e-adda-4ad3-8894-6b653a31dba1
+311edec2-927e-4f00-917f-cdc425be9c77,Diapers,Baby hygiene product,245d4fb1-07af-450c-8036-aa7c39f6d065
+b2e7a5e5-4f99-4dec-92b5-e39f7f251b20,Baby Wipes,Baby hygiene product,245d4fb1-07af-450c-8036-aa7c39f6d065
+cd1a9e4b-1190-4509-9400-739219ba59f9,Baby Shampoo,Baby hair cleaning product,245d4fb1-07af-450c-8036-aa7c39f6d065
+2393d2c2-6105-4090-87d8-fba815ac7f36,Baby Powder,Baby skin care product,245d4fb1-07af-450c-8036-aa7c39f6d065
+90f68671-27c7-4a62-b46d-3a1d125a2469,Diaper Rash Cream,Baby skin care product,245d4fb1-07af-450c-8036-aa7c39f6d065
+969449b7-1512-4f5a-833d-e79de9eddee7,Multivitamins,Daily vitamin supplement,4041e43c-1008-430d-acef-85708ed0b357
+03e63899-1f0b-412d-ac10-5504d4e96418,Vitamin C Tablets,Vitamin C supplement,4041e43c-1008-430d-acef-85708ed0b357
+fe13f217-21ec-4572-a562-4f5ef24d739d,Calcium Supplements,Calcium supplement,4041e43c-1008-430d-acef-85708ed0b357
+7cd7f156-5e2d-42f9-953f-1d4b88330f42,Fish Oil Capsules,Omega-3 fatty acid supplement,4041e43c-1008-430d-acef-85708ed0b357
+49b94495-cb11-4465-9afc-7f8aaf77d1f8,Probiotic Supplements,Probiotic supplement,4041e43c-1008-430d-acef-85708ed0b357
+450b5a03-1c85-499c-8c10-9671c733ea5c,Band-Aids,Wound dressing,bffc965b-9dee-4526-97fe-1422bda5cd8a
+a04e6940-b959-4b98-9b0d-4a92a2d61035,Antiseptic Cream,Antibacterial cream,bffc965b-9dee-4526-97fe-1422bda5cd8a
+b9771e71-3d86-4551-8f32-c6a7de80470d,Hydrogen Peroxide,Antiseptic solution,bffc965b-9dee-4526-97fe-1422bda5cd8a
+70518751-5d50-4c3f-a18f-8d7769c17bb2,Adhesive Tape,Medical tape,bffc965b-9dee-4526-97fe-1422bda5cd8a
+89312264-b39d-4190-bdb4-4e96ebd7f34b,Sterile Gauze Pads,Sterile wound dressing,bffc965b-9dee-4526-97fe-1422bda5cd8a
+de316969-a788-4a63-b367-a5015e4ccc55,Aspirin,Pain reliever,428648fe-a939-449c-a1f0-7e36ef7999af
+63341758-44f0-4b1c-a86b-774ec67d9412,Acetaminophen,Pain reliever and fever reduce,428648fe-a939-449c-a1f0-7e36ef7999af
