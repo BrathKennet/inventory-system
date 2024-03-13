@@ -6,7 +6,7 @@ Para los mapas se utilizó [Apexcharts](https://apexcharts.com/).
 
 ## Demo - Solo Vista
 
-[Demo](louder-inventory-system.vercel.app)
+[Demo](https://louder-inventory-system.vercel.app/)
 
 Usuario: admin@gmail.com
 
