@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Sistema de Inventario 
 
-First, run the development server:
+Sistema de Inventario desarrollado en Next.js con Supabase.
+Para los mapas se utilizó [Apexcharts](https://apexcharts.com/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Demo - Solo Vista
+
+[Demo](louder-inventory-system.vercel.app)
+
+Usuario: admin@gmail.com
+
+Contraseña: 123456
+
+![Home](https://github.com/BrathKennet/inventory-system/blob/master/doc/captures/home-1.png)
+
+## Características
+
+- Administración de categories, productos y lotes.
+- Administración de lotes por fechas de vencimiento.
+- Administración de Proveedores.
+- Administración de Clientes y Ventas.
+- Administración de Transacciones.
+- Mapas interactivos.
+
+## Modo de utilizar
+
+1. Crear un proyecto en Supabase.
+
+2. Colocar las variables de entorno en un archivo env.local en la raiz del proyecto de Next.js:
+```env
+NEXT_PUBLIC_SUPABASE_URL=<SUBSTITUTE_SUPABASE_URL>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<SUBSTITUTE_SUPABASE_ANON_KEY>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. En "Authentication" del proyecto en Supabase agregar los usuarios que pueden acceder al sistema.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Para la creación de tablas, restricciones de acceso y creación de funciones y su uso en Supabase, lo puede encontrar en la carpeta [doc/data](https://github.com/BrathKennet/inventory-system/blob/master/doc/data)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To run this project, you will need to add the following environment variables to your .env file
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Capturas de Pantallas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Login](https://github.com/BrathKennet/inventory-system/blob/master/doc/captures/login.png)
 
-## Deploy on Vercel
+![Home](https://github.com/BrathKennet/inventory-system/blob/master/doc/captures/home-1.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Home-2](https://github.com/BrathKennet/inventory-system/blob/master/doc/captures/home-2.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Lots](https://github.com/BrathKennet/inventory-system/blob/master/doc/captures/lots-1.png)
+
+![Lots-2](https://github.com/BrathKennet/inventory-system/blob/master/doc/captures/lots-2.png)

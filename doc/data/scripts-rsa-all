@@ -1,31 +1,31 @@
 CREATE POLICY "All options" ON "public"."categories"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;
 
 CREATE POLICY "All options" ON "public"."suppliers"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;
 
 CREATE POLICY "All options" ON "public"."clients"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;
 
 CREATE POLICY "All options" ON "public"."lots"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;
 
 CREATE POLICY "All options" ON "public"."products"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;
 
 CREATE POLICY "All options" ON "public"."sales"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;
 
 CREATE POLICY "All options" ON "public"."type_transaction"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;
 
 CREATE POLICY "All options" ON "public"."transactions"
 AS PERMISSIVE FOR ALL
-TO authenticated
+TO authenticated;

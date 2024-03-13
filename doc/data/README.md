@@ -1,8 +1,8 @@
-# Generación de Datos 
+# Generación de Datos
 
 Para la generación de datos, se debe crear un proyecto en proyecto en Supabase.
 
-Los scripts para la creación de tablas, restricciones de acceso y creación de función se encuentra en el archivo [scripts](https://github.com/BrathKennet/inventory-system/blob/master/doc/data/scripts)
+Los scripts para la creación de tablas, restricciones de acceso y creación de funciones se encuentra en el archivo [scripts](https://github.com/BrathKennet/inventory-system/blob/master/doc/data/scripts)
 
 Para habilitar las restricciones de acceso a las tablas, puede utilizar uno de las siguientes archivos:
 
