@@ -9,7 +9,7 @@ export default function SelectRows({ rows }: { rows: number }) {
   const pathname = usePathname();
   const { replace, push } = useRouter();
 
-  const changeLanguage = (rows: string) => {
+  const changeRows = (rows: string) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", "1");
     if (rows !== "10") {
@@ -25,7 +25,7 @@ export default function SelectRows({ rows }: { rows: number }) {
       <label htmlFor="rows">Rows per page: </label>
       <select
         value={rows}
-        onChange={(e) => changeLanguage(e.target.value)}
+        onChange={(e) => changeRows(e.target.value)}
         className="bg-background_s text-base"
         id="rows"
       >
